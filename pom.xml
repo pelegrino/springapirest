@@ -11,7 +11,7 @@
 	<groupId>curso.api.rest</groupId>
 	<artifactId>springapirest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>springapirest</name>
 	<description>Spring API Rest</description>
 	<properties>
