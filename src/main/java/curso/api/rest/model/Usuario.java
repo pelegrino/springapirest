@@ -54,6 +54,7 @@ public class Usuario implements UserDetails {
 										referencedColumnName = "id",
 										table = "role",
 										unique = false,
+										updatable = false,
 										foreignKey = @ForeignKey(name = "role_fk", value = ConstraintMode.CONSTRAINT)))
 	private List<Role> roles;
 
