@@ -12,7 +12,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import curso.api.rest.service.ImplementacaoUserDetailsService;
 
-@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
@@ -21,6 +20,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 	private ImplementacaoUserDetailsService implementacaoUserDetailsService;
 	
 	
+	//Atentar que esse código está deprecado no Spring 6 em diante, em especial o security web e security config
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	    http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
