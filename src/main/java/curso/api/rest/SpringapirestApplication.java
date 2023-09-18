@@ -24,6 +24,7 @@ public class SpringapirestApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringapirestApplication.class, args);
+		//System.out.println(new BCryptPasswordEncoder().encode("1234"));
 	}
 	
 	//Mapeamento Global de Acesso
