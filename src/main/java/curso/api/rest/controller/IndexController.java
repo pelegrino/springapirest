@@ -83,8 +83,17 @@ public class IndexController {
 			usuario.getTelefones().get(pos).setUsuario(usuario);
 		}
 		
-		String senhaCriptografada = new BCryptPasswordEncoder().encode(usuario.getSenha());
-		usuario.setSenha(senhaCriptografada);
+		Usuario userTemporario = usuarioRepository.findUserByLogin(usuario.getLogin());
+	
+		if (userTemporario != null) {
+			
+			if (!userTemporario.getSenha().equals(usuario.getSenha())) {
+				String senhaCriptografada = new BCryptPasswordEncoder().encode(usuario.getSenha());
+				usuario.setSenha(senhaCriptografada);
+				
+			}
+		}
+		
 		Usuario usuarioSalvo = usuarioRepository.save(usuario);
 		
 		return new ResponseEntity<Usuario>(usuarioSalvo, HttpStatus.OK);
