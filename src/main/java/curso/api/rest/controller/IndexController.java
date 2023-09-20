@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import curso.api.rest.dto.UsuarioDTO;
 import curso.api.rest.model.Usuario;
 import curso.api.rest.repository.UsuarioRepository;
 
@@ -41,11 +42,11 @@ public class IndexController {
 	@CacheEvict(value = "cacheuser", allEntries = true)
 	@CachePut("cacheuser")
 	@GetMapping(value = "/{id}", produces = "application/json")
-	public ResponseEntity<Usuario> init(@PathVariable(value = "id") Long id) {
+	public ResponseEntity<UsuarioDTO> init(@PathVariable(value = "id") Long id) {
 		
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		
-		return new ResponseEntity<Usuario>(usuario.get(), HttpStatus.OK);
+		return new ResponseEntity<UsuarioDTO>(new UsuarioDTO(usuario.get()), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = "/{id}", produces = "application/text")
