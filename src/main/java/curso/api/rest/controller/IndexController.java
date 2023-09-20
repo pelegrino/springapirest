@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,6 +38,8 @@ public class IndexController {
 		return new ResponseEntity<Usuario>(usuario.get(), HttpStatus.OK);
 	}
 	
+	@CacheEvict(value = "cacheuser", allEntries = true)
+	@CachePut("cacheuser")
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Usuario> init(@PathVariable(value = "id") Long id) {
 		
@@ -54,6 +58,8 @@ public class IndexController {
 	}
 	
 	@GetMapping(value = "/", produces = "application/json")
+	@CacheEvict(value = "cacheusuarios", allEntries = true)
+	@CachePut("cacheusuarios")
 	public ResponseEntity<List<Usuario>> usuario() {
 		
 		List<Usuario> list = (List<Usuario>) usuarioRepository.findAll();

@@ -61,6 +61,16 @@ public class Usuario implements UserDetails {
 										updatable = false,
 										foreignKey = @ForeignKey(name = "role_fk", value = ConstraintMode.CONSTRAINT)))
 	private List<Role> roles;
+	
+	private String token;
+	
+	public void setToken(String token) {
+		this.token = token;
+	}
+	
+	public String getToken() {
+		return token;
+	}
 
 	public List<Telefone> getTelefones() {
 		return telefones;
