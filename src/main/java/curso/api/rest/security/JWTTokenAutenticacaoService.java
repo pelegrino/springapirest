@@ -49,7 +49,7 @@ public class JWTTokenAutenticacaoService {
 		ApplicationContextLoad.getApplicationContext().getBean(UsuarioRepository.class).atualizaTokenUser(JWT, username);
 		
 		//Liberando resposta para portas diferentes que usam API
-		liberacaoCors(response);
+		response.addHeader("Access-Control-Allow-Origin", "*");
 		
 		//Escreve token como resposta no corpo do http
 		response.getWriter().write("{\"Authorization\": \""+token+"\"}");
