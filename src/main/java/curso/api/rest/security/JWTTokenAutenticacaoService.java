@@ -102,12 +102,14 @@ public class JWTTokenAutenticacaoService {
 		
 		}
 	
-		liberacaoCors(response);
+		
+		response.addHeader("Access-Control-Allow-Origin", "*");
 		
 		return null; //Não autorizado
 		
 	}
-
+	
+	/*
 	private void liberacaoCors(HttpServletResponse response) {
 		
 		if (response.getHeader("Access-Control-Allow-Origin") == null) {
@@ -127,5 +129,5 @@ public class JWTTokenAutenticacaoService {
 		}
 		
 	}
-	
+	*/
 }
