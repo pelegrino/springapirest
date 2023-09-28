@@ -49,7 +49,8 @@ public class JWTTokenAutenticacaoService {
 		ApplicationContextLoad.getApplicationContext().getBean(UsuarioRepository.class).atualizaTokenUser(JWT, username);
 		
 		//Liberando resposta para portas diferentes que usam API
-		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+		liberacaoCors(response);
 		
 		//Escreve token como resposta no corpo do http
 		response.getWriter().write("{\"Authorization\": \""+token+"\"}");
@@ -103,13 +104,12 @@ public class JWTTokenAutenticacaoService {
 		}
 	
 		
-		response.addHeader("Access-Control-Allow-Origin", "*");
+		liberacaoCors(response);
 		
 		return null; //Não autorizado
 		
 	}
-	
-	/*
+
 	private void liberacaoCors(HttpServletResponse response) {
 		
 		if (response.getHeader("Access-Control-Allow-Origin") == null) {
@@ -129,5 +129,5 @@ public class JWTTokenAutenticacaoService {
 		}
 		
 	}
-	*/
+	
 }
