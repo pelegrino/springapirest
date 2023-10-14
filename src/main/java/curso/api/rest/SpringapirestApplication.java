@@ -13,9 +13,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@EntityScan(basePackages = {"curso.api.rest.model"})
-@ComponentScan(basePackages = {"curso.*"})
-@EnableJpaRepositories(basePackages = {"curso.api.rest.repository"})
+@EntityScan(basePackages = { "curso.api.rest.model" })
+@ComponentScan(basePackages = { "curso.*" })
+@EnableJpaRepositories(basePackages = { "curso.api.rest.repository" })
 @EnableTransactionManagement
 @EnableWebMvc
 @RestController
@@ -24,15 +24,17 @@ public class SpringapirestApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringapirestApplication.class, args);
-		//System.out.println(new BCryptPasswordEncoder().encode("1234"));
+		// System.out.println(new BCryptPasswordEncoder().encode("1234"));
 	}
-	
-	//Mapeamento Global de Acesso
+
+	// Mapeamento Global de Acesso
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/usuario/**") //Onde pode ser acessado
-		.allowedMethods("*") //O que pode ser acessado
-		.allowedOrigins("*"); //Quem pode acessar
+		registry.addMapping("/**") // Onde pode ser acessado
+				.allowedMethods("*")
+				.allowedOrigins("*")
+				.allowCredentials(true);
+
 	}
 
 }
