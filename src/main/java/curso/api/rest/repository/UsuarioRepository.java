@@ -1,5 +1,7 @@
 package curso.api.rest.repository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,6 +14,9 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 	
 	@Query("select u from Usuario u where u.login = ?1")
 	Usuario findUserByLogin(String Login);
+	
+	@Query("select u from Usuario u where u.nome like %?1%")
+	List<Usuario> findUserByNome(String nome);
 	
 	@Transactional
 	@Modifying
